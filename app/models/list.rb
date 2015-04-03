@@ -12,7 +12,7 @@
 
 class List < ActiveRecord::Base
   validates :title, :board, :ord, presence: true
-  after_initialize :increment_max_ord
+  before_save :increment_max_ord
 
   belongs_to :board
   has_many :cards, dependent: :destroy
@@ -20,7 +20,7 @@ class List < ActiveRecord::Base
   default_scope { order(:ord) }
 
   def increment_max_ord
-    if ord == 0.0
+    if ord.nil?
       ord_max = List.where(board_id: board.id).maximum(:ord)
       if ord_max.nil?
         self.ord = 1.0

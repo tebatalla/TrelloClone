@@ -1,0 +1,8 @@
+{
+  "globals": [
+    "TrelloClone",
+    "Backbone",
+    "JST",
+    "_"
+  ]
+}

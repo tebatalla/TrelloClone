@@ -3,10 +3,12 @@ window.TrelloClone = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function($rootEl) {
+    new TrelloClone.Routers.Router($rootEl);
+    Backbone.history.start();
   }
 };
 
 $(document).ready(function(){
-  TrelloClone.initialize();
+  TrelloClone.initialize($('#main'));
 });

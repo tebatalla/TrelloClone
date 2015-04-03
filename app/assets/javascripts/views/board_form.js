@@ -6,10 +6,12 @@ TrelloClone.Views.BoardForm = Backbone.View.extend({
     this.model.save(data, {
       success: function () {
         this.collection.add(this.model);
-        Backbone.history.navigate(this.model.url());
+        Backbone.history.navigate('boards/' + this.model.id, { trigger: true });
       }.bind(this)
     });
   },
+
+  className: 'col-sm-offset-3 col-sm-6',
 
   events: {
     "submit form": "addBoard"

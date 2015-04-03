@@ -21,6 +21,8 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     }.bind(this));
   
     return this;
-  }
+  },
+
+  className: 'jumbotron'
   
 });

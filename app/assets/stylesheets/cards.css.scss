@@ -23,6 +23,15 @@ $card-padding: 15px;
   resize: none;
 }
 
+.card-title {
+  width: 80%;
+  display: inline-block;
+}
+
+.card-title a {
+  word-wrap: break-word;
+}
+
 .card {
   margin-bottom: 6px;
   border-radius: $border-radius;

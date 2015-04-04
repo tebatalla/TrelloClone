@@ -1,11 +1,11 @@
-<div class="row">
-  <p class="h4 col-xs-10"><%= list.escape('title') %></p>
-  <button type="button" class="btn btn-danger btn-sm delete">
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
-  </button>
-</div>
-<div class="row">
-  <ul class="list-group cards list-unstyled col-xs-12">
+<div class="list">
+  <div class="list-header">
+    <h4 class="list-heading"><%= list.escape('title') %></h4>
+    <button type="button" class="btn btn-danger btn-sm list-header-btn pull-right delete">
+      <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 
+    </button>
+  </div>
+  <div class="list-group cards list-unstyled col-xs-12">
     
-  </ul>
+  </div>
 </div>

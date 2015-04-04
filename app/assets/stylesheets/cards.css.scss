@@ -1,0 +1,29 @@
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+$border-radius: 4px;
+$card-padding: 15px;
+
+.cards {
+  padding-left: $card-padding;
+  margin-bottom: 6px;
+}
+
+.add-card-form {
+  padding-left: $card-padding;
+  padding-right: $card-padding;
+}
+
+.add-card-title {
+  resize: none;
+}
+
+.card {
+  margin-bottom: 6px;
+  border-radius: $border-radius;
+}

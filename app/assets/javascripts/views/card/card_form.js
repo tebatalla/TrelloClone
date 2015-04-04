@@ -3,6 +3,8 @@ TrelloClone.Views.CardForm = Backbone.View.extend({
 
   tagName: 'form',
 
+  className: 'add-card-form',
+
   events: {
     'submit': 'createCard'
   },

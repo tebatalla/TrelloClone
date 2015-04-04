@@ -1,0 +1,26 @@
+$border-radius: 4px;
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.list-heading {
+  display: inline;
+  line-height: 30px;
+  margin: 0;
+}
+
+.list-header {
+  padding: 8px 8px 8px 0;
+  margin: 0 auto;
+}
+
+.list {
+  background-color: #e2e4e6;
+  padding: 5px;
+  border-radius: $border-radius;
+}

@@ -12,6 +12,7 @@ $card-padding: 15px;
 .cards {
   padding-left: $card-padding;
   margin-bottom: 6px;
+  min-height: 42px;
 }
 
 .add-card-form {

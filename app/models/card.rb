@@ -17,4 +17,15 @@ class Card < ActiveRecord::Base
   has_many :card_assignments, dependent: :destroy
 
   default_scope { order(:ord) }
+
+  def increment_max_ord
+    if ord.nil?
+      ord_max = Card.where(list_id: list.id).maximum(:ord)
+      if ord_max.nil?
+        self.ord = 1.0
+      else
+        self.ord = ord_max + 1
+      end
+    end
+  end
 end

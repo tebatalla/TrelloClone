@@ -1,12 +1,12 @@
 TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   template: JST['list/show'],
 
-  className: 'col-md-3',
+  className: 'col-md-4',
 
   events: {
     "click .delete": "deleteList",
     "click .add": "displayAddCard",
-    "dblclick": "displayAddCard"
+    "click .remove-add": "removeAddCard"
   },
 
   render: function () {
@@ -21,25 +21,38 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
       });
       this.addSubview('.cards', cardInListView);
     }.bind(this));
-  
+
+    this.addCardView = $('<a class="add">Add a new card</a>');
+    
+    this.$('.cards').after(this.addCardView);
   
     return this;
   },
 
-  displayAddCard: function () {
-    this.$el.off('dblclick');
-    this.$el.off('click', '.add');
-    var newCardView = new TrelloClone.Views.CardForm({
+  initialize: function() {
+    this.listenTo(this.model.cards(), "add", this.render);
+  },
+
+  removeAddCard: function () {
+    this.newCardView.$el.replaceWith(this.addCardView);
+  },
+
+  displayAddCard: function (event) {
+    event.preventDefault();
+
+    this.newCardView = new TrelloClone.Views.CardForm({
       model: new TrelloClone.Models.Card(),
       collection: this.model.cards(),
       list: this.model
     });
 
-    this.addSubview('.cards', newCardView);
+    this.addCardView.replaceWith(this.newCardView.render().$el);
   },
 
   deleteList: function () {
     this.remove();
+    this.newCardView && this.newCardView.remove();
+    this.addCardView && this.addCardView.remove();
     this.model.destroy();
   }
 });

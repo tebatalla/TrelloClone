@@ -23,4 +23,22 @@ $border-radius: 4px;
   background-color: #e2e4e6;
   padding: 5px;
   border-radius: $border-radius;
+  width: 300px;
+  max-height: 500px;
+  white-space: nowrap;
+  overflow-y: scroll;
+}
+
+.lists {
+  display: inline-flex;
+}
+
+.lists-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 500px;
+}
+
+.list-item {
+  white-space: nowrap;
 }

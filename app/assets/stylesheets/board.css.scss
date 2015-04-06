@@ -1,0 +1,15 @@
+.board-lists {
+  overflow: hidden;
+  height:100%;
+  width:100%;
+  padding: 0 15px;
+  position: relative;
+}
+
+.backdrop {
+  overflow-x:scroll;
+  overflow-y:hidden;
+  height: 100%;
+  width:100%;
+  padding: 0 15px;
+}

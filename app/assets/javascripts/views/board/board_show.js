@@ -6,6 +6,25 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     this.listenTo(this.model.lists(), "add", this.render);
   },
 
+  events: {
+    "click .new-list": "displayAddListForm",
+    "click .remove-new-list": "removeAddListForm"
+  },
+
+  displayAddListForm: function (event) {
+    event.preventDefault();
+    var newListView = new TrelloClone.Views.ListForm({
+      model: new TrelloClone.Models.List({}),
+      board: this.model,
+      collection: this.model.lists()
+    });
+
+    this.$newList && this.$newList.remove();
+
+    this.$('.lists').append(newListView.render().$el);
+
+  },
+
   render: function () {
     var content = this.template({
       board: this.model
@@ -21,13 +40,14 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
       this.addSubview('.lists', listView);
     }.bind(this));
 
-    var newListView = new TrelloClone.Views.ListForm({
-      model: new TrelloClone.Models.List({}),
-      board: this.model,
-      collection: this.model.lists()
-    });
+    this.$newList = $('<li class="list-item">');
+    this.$newList.append('<div class="list">');
+    this.$newList.find('.list').append('<a class="new-list">Add a new list</a>');
+    this.$('.lists').append(this.$newList);
 
-    this.addSubview('.container', newListView);
+
+    // this.$el.append(newListView.render().$el);
+
 
     this.$('.lists').sortable({
       connectWith: '.lists'
@@ -36,6 +56,6 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     return this;
   },
 
-  className: 'jumbotron'
+  className: 'board-lists'
   
 });

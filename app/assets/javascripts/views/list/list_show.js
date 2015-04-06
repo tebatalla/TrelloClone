@@ -1,7 +1,8 @@
 TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
   template: JST['list/show'],
 
-  className: 'col-md-4',
+  className: 'list-item',
+  tagName: 'li',
 
   events: {
     "click .delete": "deleteList",

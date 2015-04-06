@@ -5,6 +5,10 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
     "submit form": "addList"
   },
 
+  tagName: 'li',
+
+  className: 'list-item',
+
   addList: function (event) {
     event.preventDefault();
 

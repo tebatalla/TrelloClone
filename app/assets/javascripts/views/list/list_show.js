@@ -10,6 +10,12 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     "click .remove-add": "removeAddCard"
   },
 
+  attributes: function () {
+    return {
+      "data-id": this.model.id
+    };
+  },
+
   render: function () {
     var content = this.template({
       list: this.model
@@ -28,13 +34,44 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     this.$('.cards').after(this.addCardView);
 
     this.$('.cards').sortable({
-      connectWith: '.cards'
+      connectWith: '.cards',
+      placeholder: "card-placeholder",
+      stop: this.dropDraggable.bind(this)
     });
   
     return this;
   },
 
-  initialize: function() {
+  dropDraggable: function (event, ui) {
+    var newListId = ui.item.parent().parent().parent().data('id');
+    var cards = ui.item.parent().children();
+
+    _.each( cards, function (card, index) {
+      var cardModel, oldCollection;
+      var newCollection = this.collection.get(newListId).cards();
+      var id = $(card).data('id');
+      if ($(card).data('id') === ui.item.data('id')) {
+        oldCollection = this.model.cards();
+        cardModel = oldCollection.get(id);
+      } else {
+        oldCollection = newCollection;
+        cardModel = oldCollection.get(id);
+      }
+      cardModel.set({
+        "ord": index,
+        "list_id": newListId
+      });
+      cardModel.save({}, {
+        success: function (cardModel) {
+          oldCollection.remove(cardModel);
+          newCollection.add(cardModel);
+        }.bind(this)
+      });
+    }.bind(this));
+  },
+
+  initialize: function(options) {
+    this.board = options.board;
     this.listenTo(this.model.cards(), "add", this.render);
   },
 

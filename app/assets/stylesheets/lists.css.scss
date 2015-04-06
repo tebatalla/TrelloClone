@@ -42,3 +42,10 @@ $border-radius: 4px;
 .list-item {
   white-space: nowrap;
 }
+
+.list-placeholder {
+  height: 72px;
+  background-color: #8c8c8c;
+  width: 300px;
+  border-radius: $border-radius;
+}

@@ -19,6 +19,12 @@ TrelloClone.Views.ListShowItem = Backbone.View.extend({
 
   className: 'list-group-item card',
 
+  attributes: function () {
+    return {
+      "data-id": this.model.id
+    };
+  },
+
   displayRemoveButton: function () {
     this.$button = $('<button>').addClass('remove btn btn-default btn-sm pull-right badge');
     this.$button.attr('aria-label', 'Remove Card');

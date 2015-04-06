@@ -12,8 +12,8 @@ json.members @board.members do |member|
 end
 
 json.lists @board.lists do |list|
-  json.extract! list, :id, :title, :ord
+  json.extract! list, :id, :title, :ord, :board_id
   json.cards list.cards do |card|
-    json.extract! card, :id, :title, :description, :ord
+    json.extract! card, :id, :title, :description, :ord, :list_id
   end
 end

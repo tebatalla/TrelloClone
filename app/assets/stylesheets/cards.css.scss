@@ -24,6 +24,7 @@ $card-padding: 15px;
 
 .add-card-title {
   resize: none;
+  margin-bottom: 6px;
 }
 
 .card-title {
@@ -38,4 +39,12 @@ $card-padding: 15px;
 .card {
   margin-bottom: 6px;
   border-radius: $border-radius;
+}
+
+.card-placeholder {
+  height: 42px;
+  margin-bottom: 6px;
+  width: 100%;
+  border-radius: $border-radius;
+  background-color: #8c8c8c;
 }

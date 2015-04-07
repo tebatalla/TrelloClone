@@ -2,7 +2,8 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
   template: JST['list/_form'],
 
   events: {
-    "submit form": "addList"
+    "submit form": "addList",
+    "keydown .has-error": "removeError"
   },
 
   tagName: 'li',
@@ -11,19 +12,28 @@ TrelloClone.Views.ListForm = Backbone.View.extend({
 
   addList: function (event) {
     event.preventDefault();
-
     var data = $(event.currentTarget).serializeJSON();
-    this.model.set(data);
-    this.model.set({
-      'board_id': this.board.id,
-      'ord': this.setOrd()
-    });
-    this.model.save({}, {
-      success: function () {
-        this.collection.add(this.model);
-        this.render();
-      }.bind(this)
-    });
+    if (data.title === "") {
+      this.$('.form-group').addClass('has-error');
+      this.$('.help-block').toggle('highlight');
+    } else {
+      this.model.set(data);
+      this.model.set({
+        'board_id': this.board.id,
+        'ord': this.setOrd()
+      });
+      this.model.save({}, {
+        success: function () {
+          this.collection.add(this.model);
+          this.render();
+        }.bind(this)
+      });
+    }
+  },
+
+  removeError: function (event) {
+    $(event.currentTarget).removeClass('has-error');
+    this.$('.help-block').remove('highlight');
   },
 
   render: function () {

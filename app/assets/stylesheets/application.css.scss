@@ -28,3 +28,13 @@ body {
 #main {
   position: relative;
 }
+
+.ui-sortable-helper {
+  transform: rotate(3deg);
+  .list {
+    box-shadow: 0 0 5px #8c8c8c;
+  }
+  .card {
+    box-shadow: 0 0 5px #8c8c8c;
+  }
+}

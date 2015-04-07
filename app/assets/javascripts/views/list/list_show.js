@@ -36,7 +36,8 @@ TrelloClone.Views.ListShow = Backbone.CompositeView.extend({
     this.$('.cards').sortable({
       connectWith: '.cards',
       placeholder: "card-placeholder",
-      stop: this.dropDraggable.bind(this)
+      stop: this.dropDraggable.bind(this),
+      cursorAt: {top: 10}
     });
   
     return this;

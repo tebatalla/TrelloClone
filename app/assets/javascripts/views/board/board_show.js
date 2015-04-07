@@ -22,7 +22,6 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     this.$newList && this.$newList.remove();
 
     this.$('.lists').append(newListView.render().$el);
-
   },
 
   dropDraggable: function (event, ui) {
@@ -37,30 +36,6 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
     }.bind(this));
 
     this.model.lists().set(newListModels);
-    // var cards = ui.item.parent().children();
-
-    // _.each( cards, function (card, index) {
-    //   var cardModel, oldCollection;
-    //   var newCollection = this.collection.get(newListId).cards();
-    //   var id = $(card).data('id');
-    //   if ($(card).data('id') === ui.item.data('id')) {
-    //     oldCollection = this.model.cards();
-    //     cardModel = oldCollection.get(id);
-    //   } else {
-    //     oldCollection = newCollection;
-    //     cardModel = oldCollection.get(id);
-    //   }
-    //   cardModel.set({
-    //     "ord": index,
-    //     "list_id": newListId
-    //   });
-    //   cardModel.save({}, {
-    //     success: function (cardModel) {
-    //       oldCollection.remove(cardModel);
-    //       newCollection.add(cardModel);
-    //     }.bind(this)
-    //   });
-    // }.bind(this));
   },
 
   render: function () {
@@ -89,12 +64,12 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
       connectWith: '.lists',
       placeholder: "list-placeholder",
       stop: this.dropDraggable.bind(this),
-      items: "li:not(.not-sortable)"
+      items: "li:not(.not-sortable)",
+      cursorAt: {top: 10}
     });
   
     return this;
   },
 
   className: 'board-lists'
-  
 });
